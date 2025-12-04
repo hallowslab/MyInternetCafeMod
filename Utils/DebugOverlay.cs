@@ -8,34 +8,63 @@ namespace ICSModMenu.Utils
         private static DebugOverlay _instance;
         private List<string> _lines = new List<string>();
         private const int maxLines = 15;
+        private const float lineHeight = 18f;
+        private const float padding = 5f;
 
+        private bool visible = false;
+        private KeyCode toggleKey = KeyCode.F10;
+
+        // Ensure instance exists
+        public static DebugOverlay Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    GameObject go = new GameObject("DebugOverlay");
+                    _instance = go.AddComponent<DebugOverlay>();
+                    DontDestroyOnLoad(go);
+                }
+                return _instance;
+            }
+        }
+
+        // Public logging
         public static void Log(string message)
         {
-            if (_instance == null)
+            var inst = Instance; // ensures instance exists
+            if (inst._lines.Count >= maxLines)
+                inst._lines.RemoveAt(0);
+
+            inst._lines.Add(message);
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(toggleKey))
             {
-                GameObject go = new GameObject("DebugOverlay");
-                _instance = go.AddComponent<DebugOverlay>();
-                DontDestroyOnLoad(go);
+                visible = !visible;
             }
-
-            if (_instance._lines.Count >= maxLines)
-                _instance._lines.RemoveAt(0);
-
-            _instance._lines.Add(message);
         }
 
         void OnGUI()
         {
-            GUI.color = Color.black;
-            GUI.Box(new Rect(10, 10, 400, 300), "");
+            if (!visible || _lines.Count == 0) return;
+
+            float boxWidth = Screen.width - 2 * padding;
+            float boxHeight = maxLines * lineHeight + 2 * padding;
+            float boxX = padding;
+            float boxY = Screen.height - boxHeight - padding;
+
+            GUI.color = new Color(0f, 0f, 0f, 0.7f);
+            GUI.Box(new Rect(boxX, boxY, boxWidth, boxHeight), "");
 
             GUI.color = Color.green;
-            float y = 30;
-
-            for (int i = 0; i < _lines.Count; i++)
+            float y = boxY + padding;
+            foreach (string line in _lines)
             {
-                GUI.Label(new Rect(20, y, 380, 20), _lines[i]);
-                y += 20;
+                GUI.Label(new Rect(boxX + padding, y, boxWidth - 2 * padding, lineHeight), line);
+                y += lineHeight;
             }
         }
     }

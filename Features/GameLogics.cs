@@ -4,17 +4,14 @@ namespace ICSModMenu.Features
 {
     public static class GameLogic
     {
-        public static void AddMoney(float amount)
+        public static void SetMoney(float amount)
         {
-            float current = PlayerPrefs.GetFloat("money");
-            current += amount;
-            PlayerPrefs.SetFloat("money", current);
+            PlayerPrefs.SetFloat("money", amount);
             PlayerPrefs.Save();
 
-            if (MoneyTaker.Instance != null)
-                MoneyTaker.Instance.GenerateMoneyTaker(amount);
+            MoneyTaker.Instance?.GenerateMoneyTaker(amount);
 
-            Debug.Log($"Added {amount}$, new total: {current}$");
+            Debug.Log($"Money has been set to: {amount}$");
         }
     }
 }
