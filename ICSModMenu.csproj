@@ -6,6 +6,11 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <!-- Exclude all .cs files in Export/ from publish -->
+    <Compile Remove="Export\**" />
+  </ItemGroup>
+
   <!-- Import game folder paths -->
   <Import Project="GamePath.props" />
 
