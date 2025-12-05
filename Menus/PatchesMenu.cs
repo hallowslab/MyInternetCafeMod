@@ -24,7 +24,7 @@ namespace ICSModMenu.Menus
             // Thief Patch Toggle
             //
             if (GUI.Button(new Rect(buttonX, 40, buttonWidth, buttonHeight),
-                plugin.thiefPatchEnabled ? "Disable Thief Alert" : "Enable Thief Alert"))
+                plugin.thiefPatchEnabled ? "Enable Thiefs" : "Disable Thiefs"))
             {
                 plugin.ToggleThiefPatch();
             }
@@ -33,7 +33,7 @@ namespace ICSModMenu.Menus
             // Beggar Patch Toggle
             //
             if (GUI.Button(new Rect(buttonX, 80, buttonWidth, buttonHeight),
-                plugin.beggarPatchEnabled ? "Disable Beggar Alert" : "Enable Beggar Alert"))
+                plugin.beggarPatchEnabled ? "Enable Beggars" : "Disable Beggars"))
             {
                 plugin.ToggleBeggarPatch();
             }
