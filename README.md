@@ -11,10 +11,18 @@
 ## Features
 
 - **In‑game Mod Menu (F11)** – Toggle the mod UI at any time.
-- **Add Money Tool** – Enter any amount and instantly add it to your wallet.
-- **Live Value Preview** – Displays how much money is being added.
-- **Modular Structure** – Clean separation of features, patches, and utilities.
+- **Modular Structure** – Clean separation of features, patches, menus and utilities.
 - **Future‑proof Architecture** – Designed to be easily expanded
+
+### Cheats
+
+- **Add Money Tool** – Enter any amount and instantly add it to your wallet.
+- **Clear Trash Tool** - Clears all trash in the cafe.
+
+## Patches
+
+- **Enable/Disable Thiefs** - Prevents Thiefs from being sent to the store (does not remove them from the game)
+- **Enable/Disable Beggars** - Prevents Beggars from being sent to the store (does not remove them from the game)
 
 ---
 
@@ -83,12 +91,12 @@ The DLL will be generated inside the `publish` folder.
 
 ```table
 ICSModMenu/
-│
-├── Features/        # Game logic and mod features
-├── Patches/         # Harmony patches (future expansion)
-├── Utils/           # Helper classes
-├── GamePath.props   # Local path to the game installation
-└── ModMenuPlugin.cs # Main BepInEx entrypoint
+├── Features/           # Game logic and mod features
+├── Menus/              # Menus and submenus
+├── Patches/            # Harmony patches
+├── Utils/              # Helper classes
+├── GamePath.props      # Local path to the game installation
+└── ICSModMenu.cs    # Main BepInEx entrypoint
 ```
 
 ---
