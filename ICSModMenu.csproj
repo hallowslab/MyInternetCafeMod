@@ -20,13 +20,11 @@
     <DefineConstants>CI</DefineConstants>
   </PropertyGroup>
 
-  <!-- STUBS for CI/CD -->
-  <ItemGroup Condition="'$(UseStubs)' == 'true'">
-    <Compile Include="Stubs\**\*.cs" />
-  </ItemGroup>
-
-    <!-- Manually include files to check stubs contain proper definitions -->
+  <!-- Manually include files to check stubs contain proper definitions -->
   <ItemGroup Condition="'$(CI)' == 'true'">
+    <!-- STUBS for CI/CD -->
+    <Compile Include="Stubs\**\*.cs" />
+
     <Compile Include="Features\*.cs" />
     <Compile Include="Patches\*.cs" />
     <Compile Include="Utils\*.cs" />
