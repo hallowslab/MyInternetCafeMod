@@ -14,15 +14,22 @@
   <!-- Import game folder paths -->
   <Import Project="GamePath.props" Condition="Exists('GamePath.props')" />
 
-  <!-- STUBS for CI/CD -->
   <PropertyGroup Condition="'$(CI)' == 'true'">
     <!-- Disable default SDK compile items for CI builds -->
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <DefineConstants>CI</DefineConstants>
   </PropertyGroup>
 
+  <!-- STUBS for CI/CD -->
   <ItemGroup Condition="'$(CI)' == 'true'">
     <Compile Include="Stubs\**\*.cs" />
+
+    <!-- Manually include files to check stubs contain proper definitions -->
+    <Compile Include="Features\*.cs" />
+    <Compile Include="Patches\*.cs" />
+    <Compile Include="Utils\*.cs" />
+    <Compile Include="Menus\**\*.cs" />
+    <Compile Include="ICSModMenu.cs" />
   </ItemGroup>
 
   <ItemGroup Condition="Exists('GamePath.props') And '$(CI)' != 'true'">
