@@ -1,8 +1,8 @@
 using System.Reflection;
 
-namespace ICSModMenu.Utils
+namespace ICSModMenu.Features
 {
-    public static class CivilManagerUtils
+    public static class CivilManagerFeatures
     {
         public static void SendNewCustomer(CivilManager manager)
         {
@@ -19,7 +19,7 @@ namespace ICSModMenu.Utils
             }
             else
             {
-                DebugOverlay.Log("SendCustomer method not found!");
+                ModMenuPlugin.Log.LogError("SendCustomer method not found!");
             }
         }
     }
