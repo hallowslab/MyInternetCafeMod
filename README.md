@@ -83,6 +83,12 @@ Launch the game and press **F11** to open the menu.
    dotnet publish -c Release
    ```
 
+   3.1. If you want to test the stubs locally you need to run
+
+   ```cmd
+      dotnet build -c Debug /p:CI=true
+   ```
+
 The DLL will be generated inside the `publish` folder.
 
 ---
